@@ -1,9 +1,11 @@
 package com.moudjames23.filmou.model;
 
+import java.io.Serializable;
+
 /**
  * Created by Moud on 29-Sep-18.
  */
-public class Film {
+public class Film implements Serializable{
 
     private int id;
     private String titre;
@@ -41,5 +43,16 @@ public class Film {
 
     public String getPoster() {
         return poster;
+    }
+
+    @Override
+    public String toString() {
+        return "Film{" +
+                "id=" + id +
+                ", titre='" + titre + '\'' +
+                ", resume='" + resume + '\'' +
+                ", trailer='" + trailer + '\'' +
+                ", poster='" + poster + '\'' +
+                '}';
     }
 }

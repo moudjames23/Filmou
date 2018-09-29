@@ -1,4 +1,8 @@
 <resources>
     <string name="app_name">Filmou</string>
     <string name="action_settings">Settings</string>
+    <string name="title_activity_details">DetailsActivity</string>
+    <string name="transation_zone_name">action_transition_poster</string>
+    <string name="trailer">Trailer_description</string>
+    <string name="play">Trailer_play</string>
 </resources>

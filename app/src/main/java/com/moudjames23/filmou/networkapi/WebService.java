@@ -62,6 +62,7 @@ public class WebService {
         }
         else
         {
+            callBack.hideLoading();
             callBack.noInternetConnexion();
         }
     }

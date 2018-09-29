@@ -1,5 +1,6 @@
-package com.moudjames23.filmou;
+package com.moudjames23.filmou.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -15,11 +16,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.moudjames23.filmou.R;
+import com.moudjames23.filmou.activity.DetailsActivity;
 import com.moudjames23.filmou.adapter.AdapterFilm;
 import com.moudjames23.filmou.model.Film;
 import com.moudjames23.filmou.networkapi.NetworkCallBack;
 import com.moudjames23.filmou.networkapi.Utils;
 import com.moudjames23.filmou.networkapi.WebService;
+import com.wang.avi.AVLoadingIndicatorView;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -32,6 +36,9 @@ public class MainActivity extends AppCompatActivity implements AdapterFilm.OnFil
 
     @Bind(R.id.rv_film)
     RecyclerView rvFilm;
+    
+    @Bind(R.id.loader)
+    AVLoadingIndicatorView loader;
 
     private final String TAG = "TAG_FILM";
 
@@ -43,6 +50,8 @@ public class MainActivity extends AppCompatActivity implements AdapterFilm.OnFil
         setSupportActionBar(toolbar);
 
         ButterKnife.bind(this);
+        
+
 
         initData();
 
@@ -80,33 +89,43 @@ public class MainActivity extends AppCompatActivity implements AdapterFilm.OnFil
 
     @Override
     public void onFilmClick(Film film) {
-        Toast.makeText(MainActivity.this, film.getTitre(), Toast.LENGTH_SHORT).show();
+
+        Intent next  = new Intent(this, DetailsActivity.class);
+        next.putExtra("DATA", film);
+
+        startActivity(next);
     }
 
 
     @Override
     public void showLoading() {
         Log.d(TAG, "showLoading: ");
+        loader.show();
     }
 
     @Override
     public void hideLoading() {
         Log.d(TAG, "hideLoading: ");
+        loader.hide();
     }
 
     @Override
     public void noInternetConnexion() {
         Log.d(TAG, "noInternetConnexion: ");
+        Toast.makeText(MainActivity.this, "Oops ! Aucune connexion internet", Toast.LENGTH_SHORT).show();
     }
+    
 
     @Override
     public void noItem() {
         Log.d(TAG, "noItem: ");
+        Toast.makeText(MainActivity.this, "Aucune données à afficher", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onFailure(String errorMessage) {
         Log.d(TAG, "onFailure: ");
+        Toast.makeText(MainActivity.this, "Oops ! Une erreur s'est produite", Toast.LENGTH_SHORT).show();
     }
 
     @Override

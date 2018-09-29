@@ -1,6 +1,7 @@
 package com.moudjames23.filmou.adapter;
 
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -74,6 +75,8 @@ public class AdapterFilm extends RecyclerView.Adapter<AdapterFilm.VHFilm>{
             Picasso.with(itemView.getContext())
                     .load(Constant.IMAGE_URL+ "" +film.getPoster())
                     .into(poster);
+
+            Log.d("YOUTUBE", "bind: " +film.getTrailer());
         }
     }
 
